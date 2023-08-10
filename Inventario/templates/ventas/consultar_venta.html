@@ -1,0 +1,37 @@
+{% extends 'core.html' %}
+{% load static %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Detalle de Venta</h1>
+                        <p class="card-text"><strong>ID de Venta:</strong> {{ venta.id }}</p>
+                        <p class="card-text"><strong>Cliente:</strong> {{ venta.cliente }}</p>
+                        <p class="card-text"><strong>Fecha:</strong> {{ venta.fecha }}</p>
+                        <p class="card-text">
+
+                        <h2>Productos</h2>
+                        {% for item in venta.items.all %}
+                            <li>{{ item.producto.nombre }} - Cantidad: {{ item.cantidad }} -
+                                Precio: {{ item.producto.precio }}</li>
+                        {% empty %}
+                            <li>No hay productos en esta venta.</li>
+                        {% endfor %}
+
+                        <h2>Total Venta: <p>${{ venta.calcular_total }}</p></h2>
+                        <div class="text-center">
+                            <a href="{% url 'crear_venta' %}" class="btn btn-success">Facturacion</a>
+                            <a href="{% url 'consultar_pago' %}" class="btn btn-success">Ir Al Carrito</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

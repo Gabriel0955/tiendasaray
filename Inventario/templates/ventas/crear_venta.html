@@ -1,0 +1,139 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px #007bff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-primary:focus {
+            box-shadow: 0 0 5px #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-secondary:focus {
+            box-shadow: 0 0 5px #6c757d;
+        }
+
+        .formset-row {
+            border: 1px solid #ced4da;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        #add-button {
+            margin-top: 10px;
+        }
+    </style>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Crear Venta</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.cliente.label_tag }}
+                {{ form.cliente }}
+            </div>
+            <div class="mb-3">
+                {{ form.empleado.label_tag }}
+                {{ form.empleado }}
+            </div>
+            <div class="mb-3">
+                {{ form.forma_pago.label_tag }}
+                {{ form.forma_pago }}
+            </div>
+
+            <!-- Formset - VentaItemFormSet -->
+            <div id="formset">
+                {{ form.formset.management_form }}
+                {% for form in form.formset %}
+                    <div class="formset-row">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar">
+        </form>
+        <button type="button" id="add-button" class="btn btn-secondary mt-3">Agregar producto</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const addButton = document.getElementById('add-button');
+            addButton.addEventListener('click', () => addFormsetRow());
+        });
+
+        function addFormsetRow() {
+            const formset = document.getElementById('formset');
+            const totalForms = parseInt(formset.querySelector('#id_form-TOTAL_FORMS').value);
+            const newForm = document.createElement('div');
+            const emptyForm = '{{ form.formset.empty_form.as_p|escapejs }}';
+
+            // Only add the new form if the maximum forms limit is not reached
+            if (totalForms < {{ form.formset.max_num }}) {
+                newForm.innerHTML = emptyForm.replace(/__prefix__/g, totalForms);
+                formset.insertBefore(newForm, formset.lastChild);
+
+                // Update the total forms count
+                document.querySelector('#id_form-TOTAL_FORMS').value = totalForms + 1;
+            }
+        }
+    </script>
+{% endblock %}

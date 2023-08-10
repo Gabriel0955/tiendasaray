@@ -1,0 +1,18 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Eliminar Cliente</h1>
+        <p class="text-center">¿Estás seguro de que deseas eliminar el cliente "{{ cliente.nombre }}"?</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a href="{% url 'consultar_usuario' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

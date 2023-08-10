@@ -1,0 +1,32 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <div class="container mt-5">
+        <h2>Formulario de Empleados</h2>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="puesto" class="form-label">Puesto</label>
+                <input type="text" class="form-control" id="puesto" name="puesto" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_contratacion" class="form-label">Fecha de Contratación</label>
+                <input type="date" class="form-control" id="fecha_contratacion" name="fecha_contratacion" required>
+            </div>
+            <div class="mb-3">
+                <label for="correo_electronico" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% endblock %}

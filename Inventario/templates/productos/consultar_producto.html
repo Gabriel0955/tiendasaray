@@ -1,0 +1,32 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+  <div class="container">
+    <h1 class="mt-4 mb-4">Lista de productos</h1>
+    <div class="list-group">
+        {% for producto in producto %}
+            <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-1">{{ producto.nombre }}</h5>
+                    <div class="d-flex flex-column align-items-end">
+                        <span class="text-muted">{{ producto.precio }} USD</span>
+                        <span class="text-muted">{{ producto.cantidad }} disponibles</span>
+                    </div>
+                </div>
+                <p class="mb-1">{{ producto.descripcion }}</p>
+                <div class="mt-2">
+                    <a href="{% url 'editar_producto' pk=producto.pk %}" class="btn btn-primary btn-sm mr-2">Editar</a>
+                    <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay productos disponibles.</p>
+        {% endfor %}
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'crear_producto' %}" class="btn btn-success">Crear nuevo producto</a>
+    </div>
+</div>
+
+{% endblock %}

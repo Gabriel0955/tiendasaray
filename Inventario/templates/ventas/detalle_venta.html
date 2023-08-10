@@ -1,0 +1,35 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Detalle de Factura</h1>
+
+                        <p>ID de Venta: {{ venta.id }}</p>
+                        <p>Cliente: {{ venta.cliente }}</p>
+                        <p>Fecha: {{ venta.fecha }}</p>
+
+
+
+
+                        <h2>Productos</h2>
+                        {% for item in venta.items.all %}
+                            <li>{{ item.producto.nombre }} - Cantidad: {{ item.cantidad }} -
+                                Precio: {{ item.producto.precio }}</li>
+                        {% empty %}
+                            <li>No hay productos en esta venta.</li>
+                        {% endfor %}
+                        <h2>Total Venta: {{ venta.calcular_total }}</h2>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

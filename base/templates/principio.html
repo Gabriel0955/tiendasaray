@@ -1,0 +1,58 @@
+{% extends 'core.html' %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <style>
+        .imagenc {
+            filter: blur(5px);
+        }
+
+        .fo {
+            margin-top: -50px;
+            mar
+        }
+    </style>
+
+    <div class="jumbotron jumbotron-fluid bg-primary text-white fondo">
+        <div class="container text-center fo">
+
+
+            <h1 class="display-4">Venta de cursos </h1>
+            <p class="lead">Encuentra los mejores cursos para tu desarrollo profesional.</p>
+            <a class="btn btn-light btn-lg" href="#menu" role="button">Explorar más</a>
+        </div>
+    </div>
+
+    <div class="container" id="menu">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Gestión de Productos</h5>
+                        <p class="card-text">Añade, modifica y elimina productos de tu tienda. Mantén un inventario
+                            actualizado y controla los detalles de cada producto.</p>
+                        <a href="{% url 'consultar_producto' %}" class="btn btn-outline-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Gestión de Clientes</h5>
+                        <p class="card-text">Administra tu base de datos de clientes. Registra nuevos clientes, realiza
+                            seguimiento de sus compras.</p>
+                        <a href="{% url 'consultar_usuario' %}" class="btn btn-outline-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2023 Sistema de Ventas de Ropa. Todos los derechos reservados.</p>
+    </footer>
+
+{% endblock %}

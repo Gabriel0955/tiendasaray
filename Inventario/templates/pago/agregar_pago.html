@@ -1,0 +1,71 @@
+{% extends 'core.html' %}
+{% load static %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+    <div class="container">
+        <h1 class="text-center">Agregar Pago</h1>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.cliente.id_for_label }}">Cliente:</label>
+                <select class="form-control" id="{{ form.cliente.id_for_label }}" name="{{ form.cliente.html_name }}">
+                    {% for cliente in cliente %}
+                        <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">
+                    {{ form.cliente.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.fecha.id_for_label }}">Fecha de Pago:</label>
+                <input type="date" class="form-control" id="{{ form.fecha.id_for_label }}"
+                       name="{{ form.fecha.html_name }}" value="{{ form.fecha.value }}">
+                <div class="invalid-feedback">
+                    {{ form.fecha.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.metodo_pago.id_for_label }}">Método de Pago:</label>
+                <select class="form-control" id="{{ form.metodo_pago.id_for_label }}"
+                        name="{{ form.metodo_pago.html_name }}">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta de Crédito</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                </select>
+                <div class="invalid-feedback">
+                    {{ form.metodo_pago.errors }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="{{ form.producto.id_for_label }}">Producto:</label>
+                <select class="form-control" id="{{ form.producto.id_for_label }}" name="{{ form.producto.html_name }}">
+                    {% for producto in producto %}
+                        <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">
+                    {{ form.producto.errors }}
+                </div>
+            </div>
+                    <div class="form-group">
+                <label for="{{ form.producto.id_for_label }}">Vendedor:</label>
+                <select class="form-control" id="{{ form.empleados.id_for_label }}" name="{{ form.empleados.html_name }}">
+                    {% for vendedor in empleado %}
+                        <option value="{{ vendedor.id }}">{{ vendedor.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">
+                    {{ form.empleados.errors }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'core.html' %}
+{% load static %}
+{% block content %}
+{% endblock %}
+{% block h1 %}
+<div class="container">
+    <h1 class="text-center">Modificar Bodega</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+</div>
+
+{% endblock %}
