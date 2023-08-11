@@ -162,8 +162,9 @@ def consultar_venta_pdf(request, venta_id):
     elements = []
 
     # Add factura information to the PDF
+    elements.append(Paragraph('NOVEDADES & VARIEDADES SARAY', styles['h1']))
     elements.append(Paragraph(f'Vendedora: Meybi Yulexy Aguirre Leiton ', styles['Normal']))
-    elements.append(Paragraph('Empresa: NOVEDADES & VARIEDADES SARAY', styles['Normal']))
+
     elements.append(Paragraph('Dirección de la empresa: NUEVE DE OCTUBRE', styles['Normal']))
     elements.append(Paragraph('Ciudad, Código Postal: GUAYAQUIL,090150', styles['Normal']))
     elements.append(Paragraph('Teléfono:0982054389', styles['Normal']))
