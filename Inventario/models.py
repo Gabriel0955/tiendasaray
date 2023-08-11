@@ -37,15 +37,8 @@ class Venta(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     FORMAS_DE_PAGO = (
         ('efectivo', 'Efectivo'),
-        ('tarjeta_credito', 'Tarjeta de Crédito'),
-        ('tarjeta_debito', 'Tarjeta de Débito'),
         ('transferencia', 'Transferencia Bancaria'),
-        ('paypal', 'PayPal'),
-        ('cheque', 'Cheque'),
-        ('pago_movil', 'Pago Móvil'),
-        ('criptomonedas', 'Criptomonedas'),
-        ('pago_contra_entrega', 'Pago contra Entrega'),
-        ('pago_a_plazos', 'Pago a Plazos'),
+
     )
 
     forma_pago = models.CharField(max_length=50, choices=FORMAS_DE_PAGO, null=True)
