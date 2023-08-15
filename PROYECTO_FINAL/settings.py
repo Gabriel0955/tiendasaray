@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%o()_ccauh)n0prd_-pbe-!-egnkmurzq^_r4am!6i^kwkbme8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['tiendasaray.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'PROYECTO_FINAL.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tiendasaray',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3307',
     }
 }
+
 
 
 # Password validation
